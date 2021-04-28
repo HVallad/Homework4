@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Homework4</title>
+    </head>
+    <body>
+        <div>
+            <form id='mainForm'>
+                <label for="Name">Name:</label><br>
+                <input list='suggestions' type="text" id="Name" name="Name" value=""/><br>
+                <button id='submitButton' type="submit">Submit</button>
+                <datalist id='suggestions'>
+                    <option value='THISISDEFAULTTEST' />
+                </datalist>
+            </form>
+
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+
+
+            var socket = io.connect();
+
+            var form = document.getElementById("mainForm");
+
+            function getSuggestionsOn(e) {
+                const inputElement = document.getElementById('Name');
+
+                const entry = inputElement.value;
+                socket.emit('request', entry)
+            }
+
+            getSuggestionsOn('');
+
+            var onChange = function(evt) {
+                socket.emit('request', evt.target.value);
+            };
+            var input = document.getElementById('Name');
+            input.addEventListener('input', onChange, false);
+
+            document.getElementById("submitButton").addEventListener("click", function () {
+                const NameSuggestionElement = document.getElementById('Name');
+                const NameSuggestion = NameSuggestionElement.value;
+			    socket.emit('suggestion', NameSuggestion)
+                form.submit();
+            });
+
+            //document.getElementById('Name').addEventListener("keypress", getSuggestionsOn);
+
+            socket.on('getSuggestions', (data) => {
+                 var datalist = document.getElementById('suggestions');
+                 datalist.innerHTML = '';
+
+                var suggestions = JSON.parse(data);
+
+                suggestions.forEach(element => {
+                     var item = document.createElement('option');
+                     item.value =  element.Name;
+                     datalist.appendChild(item);
+                 });
+			});
+        </script>
+    </body>
+</html>

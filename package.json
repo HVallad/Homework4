@@ -1,0 +1,33 @@
+{
+  "name": "homework4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HVallad/Homework4.git"
+  },
+  "author": "Hunter Vallad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HVallad/Homework4/issues"
+  },
+  "homepage": "https://github.com/HVallad/Homework4#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.6",
+    "socket.io": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  }
+}
